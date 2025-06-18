@@ -16,8 +16,10 @@ qt_add_executable(ArcadeGames
     minesweeper.cpp
     minesweeperwindow.h
     minesweeperwindow.cpp
-
-
+    TICTACTOE.cpp
+    TICTACTOE.h
+    TicTacToeWindow.cpp
+    TicTacToeWindow.h
     minesweeperwindow.ui
     cellbutton.h
     cellbutton.cpp

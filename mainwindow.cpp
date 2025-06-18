@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "TicTacToeWindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include "sudokuwindow.h"
@@ -48,7 +49,10 @@ void MainWindow::onSnakeClicked() {
 }
 
 void MainWindow::onTicTacToeClicked() {
-    qDebug() << "Tic Tac Toe Clicked!";
+    TicTacToeWindow* w = new TicTacToeWindow();
+    w->setAttribute(Qt::WA_DeleteOnClose);
+    w->show();
+    this->close();
 }
 
 void MainWindow::onBlackjackClicked() {
