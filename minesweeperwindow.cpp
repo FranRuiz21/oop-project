@@ -5,7 +5,9 @@
 
 MinesweeperWindow::MinesweeperWindow(QWidget *parent) : QWidget(parent) {
     setWindowTitle("Minesweeper");
-    setFixedSize(350, 450);
+
+    // ✅ Eliminar tamaño fijo
+    // setFixedSize(350, 450);
 
     setupUI();
     updateBoard();
@@ -17,11 +19,11 @@ void MinesweeperWindow::setupUI() {
 
     mineCounterLabel = new QLabel(this);
     mineCounterLabel->setAlignment(Qt::AlignCenter);
-    mineCounterLabel->setStyleSheet("font-size: 16px; font-weight: bold;");
+    mineCounterLabel->setStyleSheet("font-size: 24px; font-weight: bold;"); // un poco más grande para pantallas grandes
     mainLayout->addWidget(mineCounterLabel);
 
     resetButton = new QPushButton("Reset", this);
-    resetButton->setFixedHeight(30);
+    resetButton->setFixedHeight(40); // un poco más alto
     mainLayout->addWidget(resetButton);
     connect(resetButton, &QPushButton::clicked, this, &MinesweeperWindow::resetClicked);
 
@@ -33,14 +35,17 @@ void MinesweeperWindow::setupUI() {
         buttons[i].resize(BOARD_SIZE);
         for (int j = 0; j < BOARD_SIZE; ++j) {
             CellButton *btn = new CellButton(i, j, this);
-            btn->setFixedSize(30, 30);
-            btn->setStyleSheet("font-weight: bold; font-size: 16px;");
+
+            // ✅ En lugar de tamaño fijo, usa size policy expansivo
+            btn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+            btn->setStyleSheet("font-weight: bold; font-size: 20px;"); // más grande para pantallas grandes
+
             gridLayout->addWidget(btn, i, j);
             buttons[i][j] = btn;
 
             connect(btn, &CellButton::leftClicked, this, &MinesweeperWindow::revealCell);
             connect(btn, &CellButton::rightClicked, this, &MinesweeperWindow::toggleFlag);
-
         }
     }
 }
@@ -51,20 +56,20 @@ void MinesweeperWindow::updateBoard() {
             if (game.isRevealed(i, j)) {
                 if (game.hasMine(i, j)) {
                     buttons[i][j]->setText("*");
-                    buttons[i][j]->setStyleSheet("color: red; font-weight: bold; font-size: 16px;");
+                    buttons[i][j]->setStyleSheet("color: red; font-weight: bold; font-size: 20px;");
                 } else {
                     int count = game.adjacentMines(i, j);
                     buttons[i][j]->setText(count > 0 ? QString::number(count) : "");
                     buttons[i][j]->setEnabled(false);
-                    buttons[i][j]->setStyleSheet("font-weight: bold; font-size: 16px;");
+                    buttons[i][j]->setStyleSheet("font-weight: bold; font-size: 20px;");
                 }
             } else if (game.isFlagged(i, j)) {
                 buttons[i][j]->setText("F");
-                buttons[i][j]->setStyleSheet("color: blue; font-weight: bold; font-size: 16px;");
+                buttons[i][j]->setStyleSheet("color: blue; font-weight: bold; font-size: 20px;");
             } else {
                 buttons[i][j]->setText("#");
                 buttons[i][j]->setEnabled(true);
-                buttons[i][j]->setStyleSheet("font-weight: bold; font-size: 16px;");
+                buttons[i][j]->setStyleSheet("font-weight: bold; font-size: 20px;");
             }
         }
     }

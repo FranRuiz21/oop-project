@@ -96,7 +96,7 @@ void SudokuWindow::loadBoard() {
         }
     }
     table->blockSignals(false);
-    table->clearSelection();  // <<--- Importante para limpiar selecciones
+    table->clearSelection();
 }
 
 
@@ -158,8 +158,7 @@ void SudokuWindow::handleCellChanged(int row, int column) {
         item->setBackground(Qt::white);
         item->setForeground(Qt::black);
     } else {
-        // Si ponen algo inválido, borrar texto y dejar color bien
-        item->setText("");
+       item->setText("");
         item->setBackground(Qt::white);
         item->setForeground(Qt::black);
     }

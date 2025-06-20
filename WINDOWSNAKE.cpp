@@ -18,7 +18,7 @@ Window::Window(QWidget *parent)
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(scoreLabel);
-    layout->addWidget(snakeGame, 1);  // da peso extra al juego
+    layout->addWidget(snakeGame, 1);
     layout->addWidget(resetButton);
 
     setLayout(layout);

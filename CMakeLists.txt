@@ -20,7 +20,8 @@ qt_add_executable(ArcadeGames
     TICTACTOE.h
     TicTacToeWindow.cpp
     TicTacToeWindow.h
-    minesweeperwindow.ui
+    sudoku.h
+    sudokuwindow.h
     cellbutton.h
     cellbutton.cpp
     snakegame.h

@@ -41,4 +41,3 @@ private:
 };
 
 #endif // SNAKEGAME_H
-
