@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>355</width>
+    <height>282</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #90cad6;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
+    <item>
+     <widget class="QLabel" name="titleLabel">
+      <property name="font">
+       <font>
+        <family>Times New Roman</family>
+        <pointsize>24</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #1389a1;</string>
+      </property>
+      <property name="text">
+       <string>Arcade Games</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="subtitleLabel">
+      <property name="font">
+       <font>
+        <family>Times New Roman</family>
+        <pointsize>14</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #1389a1;</string>
+      </property>
+      <property name="text">
+       <string>OOP Group 6</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="buttonLayout" stretch="1,1,1,1">
+      <item>
+       <widget class="QPushButton" name="sudokuButton">
+        <property name="text">
+         <string>Sudoku</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="minesweeperButton">
+        <property name="text">
+         <string>Minesweeper</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="snakeButton">
+        <property name="text">
+         <string>Snake</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="tictactoeButton">
+        <property name="text">
+         <string>Tic Tac Toe</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
