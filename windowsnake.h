@@ -1,17 +1,18 @@
 #ifndef WINDOWSNAKE_H
 #define WINDOWSNAKE_H
 
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QPushButton>
 #include <QLabel>
+#include <QPushButton>
 #include <QTimer>
+#include <QVBoxLayout>
+#include <QWidget>
 
 class SnakeGame;
 class QPushButton;
 class QLabel;
 
-class Window : public QWidget {
+class Window : public QWidget
+{
     Q_OBJECT
 
 public:

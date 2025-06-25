@@ -4,10 +4,13 @@
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
@@ -19,6 +22,7 @@ private slots:
     void onMinesweeperClicked();
     void onSnakeClicked();
     void onTicTacToeClicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -1,18 +1,20 @@
 #include "mainwindow.h"
-#include "TicTacToeWindow.h"
-#include "windowsnake.h"
-#include "ui_mainwindow.h"
 #include <QDebug>
-#include "sudokuwindow.h"
+#include "TicTacToeWindow.h"
 #include "minesweeperwindow.h"
+#include "sudokuwindow.h"
+#include "ui_mainwindow.h"
+#include "windowsnake.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     // Set button styles
-    QString buttonStyle = "background-color: #b2bfc2; color: #ffffff; font-family: 'Times New Roman'; font-weight: bold;";
+    QString buttonStyle = "background-color: #b2bfc2; color: #ffffff; font-family: 'Times New "
+                          "Roman'; font-weight: bold;";
     ui->sudokuButton->setStyleSheet(buttonStyle);
     ui->minesweeperButton->setStyleSheet(buttonStyle);
     ui->snakeButton->setStyleSheet(buttonStyle);
@@ -25,35 +27,34 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tictactoeButton, &QPushButton::clicked, this, &MainWindow::onTicTacToeClicked);
 }
 
-MainWindow::~MainWindow() {
+MainWindow::~MainWindow()
+{
     delete ui;
 }
 
-void MainWindow::onSudokuClicked() {
-
+void MainWindow::onSudokuClicked()
+{
     SudokuWindow *sudokuWindow = new SudokuWindow();
     sudokuWindow->setAttribute(Qt::WA_DeleteOnClose);
     sudokuWindow->show();
-
 }
 
-void MainWindow::onMinesweeperClicked() {
+void MainWindow::onMinesweeperClicked()
+{
     MinesweeperWindow *w = new MinesweeperWindow();
     w->setAttribute(Qt::WA_DeleteOnClose);
     w->show();
-
 }
 
-void MainWindow::onSnakeClicked() {
+void MainWindow::onSnakeClicked()
+{
     Window *snakeWindow = new Window();
     snakeWindow->setAttribute(Qt::WA_DeleteOnClose);
     snakeWindow->show();
 }
-void MainWindow::onTicTacToeClicked() {
-    TicTacToeWindow* w = new TicTacToeWindow();
+void MainWindow::onTicTacToeClicked()
+{
+    TicTacToeWindow *w = new TicTacToeWindow();
     w->setAttribute(Qt::WA_DeleteOnClose);
     w->show();
-
 }
-
-

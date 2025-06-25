@@ -1,6 +1,5 @@
 #include "snakegame.h"
 
-
 SnakeGame::SnakeGame(QWidget *parent)
     : QWidget(parent)
 {
@@ -18,6 +17,17 @@ SnakeGame::SnakeGame(QWidget *parent)
     crashSound = new QSoundEffect(this);
     crashSound->setSource(QUrl::fromLocalFile("sounds/crash.wav"));
     crashSound->setVolume(0.5);
+    backgroundMusic = new QMediaPlayer(this);
+    backgroundOutput = new QAudioOutput(this);
+
+    backgroundMusic->setAudioOutput(backgroundOutput);
+    backgroundMusic->setSource(QUrl::fromLocalFile("sounds/Door.wav"));
+    backgroundMusic->setLoops(QMediaPlayer::Infinite); // 🔁 Bucle infinito
+    backgroundOutput->setVolume(1.0); // Volumen bajo
+    backgroundMusic->play(); // ▶️ Comienza a reproducir
+
+
+
 
     resetGame();
 }
@@ -48,40 +58,53 @@ void SnakeGame::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
     case Qt::Key_Left:
-        if (dir != Right) dir = Left;
+        if (dir != Right)
+            dir = Left;
         break;
     case Qt::Key_Right:
-        if (dir != Left) dir = Right;
+        if (dir != Left)
+            dir = Right;
         break;
     case Qt::Key_Up:
-        if (dir != Down) dir = Up;
+        if (dir != Down)
+            dir = Up;
         break;
     case Qt::Key_Down:
-        if (dir != Up) dir = Down;
+        if (dir != Up)
+            dir = Down;
         break;
     case Qt::Key_Space:
-        if (gameOver) resetGame();
+        if (gameOver)
+            resetGame();
         break;
     }
 }
 
 void SnakeGame::gameLoop()
 {
-    if (gameOver) return;
+    if (gameOver)
+        return;
 
     QPoint head = snake.first();
 
     switch (dir) {
-    case Left:  head.rx() -= 1; break;
-    case Right: head.rx() += 1; break;
-    case Up:    head.ry() -= 1; break;
-    case Down:  head.ry() += 1; break;
+    case Left:
+        head.rx() -= 1;
+        break;
+    case Right:
+        head.rx() += 1;
+        break;
+    case Up:
+        head.ry() -= 1;
+        break;
+    case Down:
+        head.ry() += 1;
+        break;
     }
 
     // Verificar colisiones
-    if (head.x() < 0 || head.x() >= GRID_COLS ||
-        head.y() < 0 || head.y() >= GRID_ROWS ||
-        snake.contains(head)) {
+    if (head.x() < 0 || head.x() >= GRID_COLS || head.y() < 0 || head.y() >= GRID_ROWS
+        || snake.contains(head)) {
         gameOver = true;
         crashSound->play(); // 💥 Sonido de choque
         timer->stop();
@@ -124,12 +147,18 @@ void SnakeGame::paintEvent(QPaintEvent *)
     // Serpiente
     painter.setBrush(Qt::green);
     for (const QPoint &p : std::as_const(snake)) {
-        painter.drawRect(offsetX + p.x() * cellWidth, offsetY + p.y() * cellHeight, cellWidth, cellHeight);
+        painter.drawRect(offsetX + p.x() * cellWidth,
+                         offsetY + p.y() * cellHeight,
+                         cellWidth,
+                         cellHeight);
     }
 
     // Comida
     painter.setBrush(Qt::red);
-    painter.drawEllipse(offsetX + food.x() * cellWidth, offsetY + food.y() * cellHeight, cellWidth, cellHeight);
+    painter.drawEllipse(offsetX + food.x() * cellWidth,
+                        offsetY + food.y() * cellHeight,
+                        cellWidth,
+                        cellHeight);
 
     // Game Over
     if (gameOver) {
@@ -137,5 +166,3 @@ void SnakeGame::paintEvent(QPaintEvent *)
         painter.drawText(rect(), Qt::AlignCenter, "GAME OVER");
     }
 }
-
-

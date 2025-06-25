@@ -2,14 +2,17 @@
 #define SNAKEGAME_H
 #include <QKeyEvent>
 #include <QPainter>
-#include <cstdlib>
-#include <ctime>
-#include <QWidget>
+#include <QPoint>
+#include <QSoundEffect>
 #include <QTimer>
 #include <QVector>
-#include <QPoint>
-#include <QSoundEffect> 
-class SnakeGame : public QWidget {
+#include <QWidget>
+#include <cstdlib>
+#include <ctime>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+class SnakeGame : public QWidget
+{
     Q_OBJECT
 
 public:
@@ -28,12 +31,14 @@ private slots:
 private:
     enum Direction { Left, Right, Up, Down };
 
-
     const int GRID_COLS = 40;
     const int GRID_ROWS = 40;
     int speed = 100;
     QSoundEffect *eatSound;
     QSoundEffect *crashSound; //SOUND ADDED
+
+    QMediaPlayer *backgroundMusic;
+    QAudioOutput *backgroundOutput;
     QVector<QPoint> snake;
     QPoint food;
     Direction dir = Right;

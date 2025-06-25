@@ -1,17 +1,16 @@
 #ifndef MINESWEEPERWINDOW_H
 #define MINESWEEPERWINDOW_H
 
-#include <QMessageBox>
-#include <QString>
-#include <QMessageBox>
-#include <QWidget>
-#include <QPushButton>
 #include <QGridLayout>
 #include <QLabel>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QString>
+#include <QWidget>
 #include "minesweeper.h"
 
-
-class MinesweeperWindow : public QWidget {
+class MinesweeperWindow : public QWidget
+{
     Q_OBJECT
 public:
     explicit MinesweeperWindow(QWidget *parent = nullptr);
@@ -21,9 +20,7 @@ private:
     QGridLayout *gridLayout;
     QLabel *mineCounterLabel;
     QPushButton *resetButton;
-    QVector<QVector<QPushButton*>> buttons;
-
-
+    QVector<QVector<QPushButton *>> buttons;
 
     void setupUI();
     void updateBoard();
@@ -34,7 +31,6 @@ private slots:
     void cellClicked();
     void resetClicked();
     void toggleFlag(int row, int col);
-
 };
 
 #endif // MINESWEEPERWINDOW_H

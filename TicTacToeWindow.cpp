@@ -1,10 +1,12 @@
 #include "TicTacToeWindow.h"
 #include <QMessageBox>
 
-TicTacToeWindow::TicTacToeWindow(QWidget *parent) : QWidget(parent) {
+TicTacToeWindow::TicTacToeWindow(QWidget *parent)
+    : QWidget(parent)
+{
     setWindowTitle("Tic Tac Toe");
 
-    QGridLayout* layout = new QGridLayout(this);
+    QGridLayout *layout = new QGridLayout(this);
 
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
@@ -27,8 +29,9 @@ TicTacToeWindow::TicTacToeWindow(QWidget *parent) : QWidget(parent) {
     setLayout(layout);
 }
 
-void TicTacToeWindow::handleButton() {
-    QPushButton* btn = qobject_cast<QPushButton*>(sender());
+void TicTacToeWindow::handleButton()
+{
+    QPushButton *btn = qobject_cast<QPushButton *>(sender());
     if (!btn || btn->text() != " ")
         return;
 
@@ -37,7 +40,8 @@ void TicTacToeWindow::handleButton() {
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)
             if (buttons[i][j] == btn) {
-                row = i; col = j;
+                row = i;
+                col = j;
             }
 
     if (!game.makeMove(row, col))
@@ -46,7 +50,9 @@ void TicTacToeWindow::handleButton() {
     btn->setText(QString(game.getCurrentPlayer()));
 
     if (game.checkWin(game.getCurrentPlayer())) {
-        QMessageBox::information(this, "Game Over", QString("Player %1 wins!").arg(game.getCurrentPlayer()));
+        QMessageBox::information(this,
+                                 "Game Over",
+                                 QString("Player %1 wins!").arg(game.getCurrentPlayer()));
         disableButtons();
         return;
     }
@@ -61,17 +67,20 @@ void TicTacToeWindow::handleButton() {
     updateStatus();
 }
 
-void TicTacToeWindow::updateStatus() {
+void TicTacToeWindow::updateStatus()
+{
     statusLabel->setText(QString("Current Player: %1").arg(game.getCurrentPlayer()));
 }
 
-void TicTacToeWindow::disableButtons() {
+void TicTacToeWindow::disableButtons()
+{
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)
             buttons[i][j]->setEnabled(false);
 }
 
-void TicTacToeWindow::resetGame() {
+void TicTacToeWindow::resetGame()
+{
     game = TicTacToe();
 
     for (int i = 0; i < 3; ++i)

@@ -1,21 +1,24 @@
 #include "minesweeperwindow.h"
 #include "cellbutton.h"
 
-MinesweeperWindow::MinesweeperWindow(QWidget *parent) : QWidget(parent) {
+MinesweeperWindow::MinesweeperWindow(QWidget *parent)
+    : QWidget(parent)
+{
     setWindowTitle("Minesweeper");
-
 
     setupUI();
     updateBoard();
     updateMineCounter();
 }
 
-void MinesweeperWindow::setupUI() {
+void MinesweeperWindow::setupUI()
+{
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     mineCounterLabel = new QLabel(this);
     mineCounterLabel->setAlignment(Qt::AlignCenter);
-    mineCounterLabel->setStyleSheet("font-size: 24px; font-weight: bold;"); // un poco más grande para pantallas grandes
+    mineCounterLabel->setStyleSheet(
+        "font-size: 24px; font-weight: bold;"); // un poco más grande para pantallas grandes
     mainLayout->addWidget(mineCounterLabel);
 
     resetButton = new QPushButton("Reset", this);
@@ -35,7 +38,8 @@ void MinesweeperWindow::setupUI() {
             // ✅ En lugar de tamaño fijo, usa size policy expansivo
             btn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-            btn->setStyleSheet("font-weight: bold; font-size: 20px;"); // más grande para pantallas grandes
+            btn->setStyleSheet(
+                "font-weight: bold; font-size: 20px;"); // más grande para pantallas grandes
 
             gridLayout->addWidget(btn, i, j);
             buttons[i][j] = btn;
@@ -46,7 +50,8 @@ void MinesweeperWindow::setupUI() {
     }
 }
 
-void MinesweeperWindow::updateBoard() {
+void MinesweeperWindow::updateBoard()
+{
     for (int i = 0; i < BOARD_SIZE; ++i) {
         for (int j = 0; j < BOARD_SIZE; ++j) {
             if (game.isRevealed(i, j)) {
@@ -71,7 +76,8 @@ void MinesweeperWindow::updateBoard() {
     }
 }
 
-void MinesweeperWindow::updateMineCounter() {
+void MinesweeperWindow::updateMineCounter()
+{
     int flaggedCount = 0;
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j)
@@ -82,8 +88,10 @@ void MinesweeperWindow::updateMineCounter() {
     mineCounterLabel->setText(QString("Mines left: %1").arg(minesLeft));
 }
 
-void MinesweeperWindow::revealCell(int row, int col) {
-    if (game.isRevealed(row, col) || game.isFlagged(row, col)) return;
+void MinesweeperWindow::revealCell(int row, int col)
+{
+    if (game.isRevealed(row, col) || game.isFlagged(row, col))
+        return;
 
     bool hitMine = game.reveal(row, col);
 
@@ -105,15 +113,18 @@ void MinesweeperWindow::revealCell(int row, int col) {
     }
 }
 
-void MinesweeperWindow::toggleFlag(int row, int col) {
-    if (game.isRevealed(row, col)) return;
+void MinesweeperWindow::toggleFlag(int row, int col)
+{
+    if (game.isRevealed(row, col))
+        return;
 
     game.toggleFlag(row, col);
     updateBoard();
     updateMineCounter();
 }
 
-void MinesweeperWindow::resetClicked() {
+void MinesweeperWindow::resetClicked()
+{
     game.reset();
     updateBoard();
     updateMineCounter();
@@ -122,5 +133,4 @@ void MinesweeperWindow::resetClicked() {
             buttons[i][j]->setEnabled(true);
 }
 
-void MinesweeperWindow::cellClicked() {
-}
+void MinesweeperWindow::cellClicked() {}

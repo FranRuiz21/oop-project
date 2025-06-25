@@ -1,7 +1,6 @@
 #include "windowsnake.h"
 #include "snakegame.h"
 
-
 Window::Window(QWidget *parent)
     : QWidget(parent)
 {

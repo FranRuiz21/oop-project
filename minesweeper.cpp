@@ -1,21 +1,35 @@
 #include "minesweeper.h"
 #include <QDebug>
-
-Minesweeper::Minesweeper() {
+#include <QUrl>
+Minesweeper::Minesweeper()
+{
     // Inicializar sonido de explosión
     crashSound = new QSoundEffect();
     crashSound->setSource(QUrl::fromLocalFile("sounds/crash.wav"));
     crashSound->setVolume(0.9);
     qDebug() << "Crash sound loaded:" << crashSound->isLoaded();
 
+    backgroundMusic = new QMediaPlayer();
+    backgroundOutput = new QAudioOutput();
+    backgroundMusic->setAudioOutput(backgroundOutput);
+    backgroundMusic->setSource(QUrl::fromLocalFile("sounds/Door.wav"));
+    backgroundMusic->setLoops(QMediaPlayer::Infinite);
+    backgroundOutput->setVolume(1.0);
+    backgroundMusic->play();
+
+
+
+
     reset();
 }
 
-Minesweeper::~Minesweeper() {
+Minesweeper::~Minesweeper()
+{
     delete crashSound;
 }
 
-void Minesweeper::reset() {
+void Minesweeper::reset()
+{
     mines.assign(BOARD_SIZE, std::vector<bool>(BOARD_SIZE, false));
     revealed.assign(BOARD_SIZE, std::vector<bool>(BOARD_SIZE, false));
     flagged.assign(BOARD_SIZE, std::vector<bool>(BOARD_SIZE, false));
@@ -24,7 +38,8 @@ void Minesweeper::reset() {
     firstClick = true;
 }
 
-void Minesweeper::placeMines(int safeX, int safeY) {
+void Minesweeper::placeMines(int safeX, int safeY)
+{
     int placed = 0;
     while (placed < MINES) {
         int x = std::rand() % BOARD_SIZE;
@@ -40,17 +55,20 @@ void Minesweeper::placeMines(int safeX, int safeY) {
     }
 }
 
-int Minesweeper::countAdjacentMines(int x, int y) const {
+int Minesweeper::countAdjacentMines(int x, int y) const
+{
     int count = 0;
     for (int i = std::max(0, x - 1); i <= std::min(BOARD_SIZE - 1, x + 1); i++) {
         for (int j = std::max(0, y - 1); j <= std::min(BOARD_SIZE - 1, y + 1); j++) {
-            if (mines[i][j]) count++;
+            if (mines[i][j])
+                count++;
         }
     }
     return count;
 }
 
-bool Minesweeper::reveal(int x, int y) {
+bool Minesweeper::reveal(int x, int y)
+{
     if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE || revealed[x][y] || flagged[x][y])
         return false;
 
@@ -83,33 +101,36 @@ bool Minesweeper::reveal(int x, int y) {
     return false;
 }
 
-void Minesweeper::toggleFlag(int x, int y) {
+void Minesweeper::toggleFlag(int x, int y)
+{
     if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE || revealed[x][y])
         return;
     flagged[x][y] = !flagged[x][y];
 }
 
-bool Minesweeper::isFlagged(int x, int y) const {
+bool Minesweeper::isFlagged(int x, int y) const
+{
     if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE)
         return false;
     return flagged[x][y];
 }
 
-bool Minesweeper::isWon() const {
+bool Minesweeper::isWon() const
+{
     return remaining == 0;
 }
 
-bool Minesweeper::isRevealed(int x, int y) const {
+bool Minesweeper::isRevealed(int x, int y) const
+{
     return revealed[x][y];
 }
 
-bool Minesweeper::hasMine(int x, int y) const {
+bool Minesweeper::hasMine(int x, int y) const
+{
     return mines[x][y];
 }
 
-int Minesweeper::adjacentMines(int x, int y) const {
+int Minesweeper::adjacentMines(int x, int y) const
+{
     return countAdjacentMines(x, y);
 }
-
-
-

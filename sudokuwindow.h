@@ -1,13 +1,13 @@
 #ifndef SUDOKUWINDOW_H
 #define SUDOKUWINDOW_H
 
+#include <QHBoxLayout>
 #include <QHeaderView>
 #include <QMessageBox>
-#include <QWidget>
-#include <QTableWidget>
 #include <QPushButton>
+#include <QTableWidget>
 #include <QVBoxLayout>
-#include <QHBoxLayout>
+#include <QWidget>
 #include "sudoku.h"
 
 class SudokuWindow : public QWidget

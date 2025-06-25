@@ -1,13 +1,14 @@
 #ifndef TICTACTOEWINDOW_H
 #define TICTACTOEWINDOW_H
 
-#include <QWidget>
-#include <QPushButton>
 #include <QGridLayout>
 #include <QLabel>
+#include <QPushButton>
+#include <QWidget>
 #include "TicTacToe.h"
 
-class TicTacToeWindow : public QWidget {
+class TicTacToeWindow : public QWidget
+{
     Q_OBJECT
 
 public:
@@ -18,14 +19,13 @@ private slots:
 
 private:
     TicTacToe game;
-    QPushButton* buttons[3][3];
-    QLabel* statusLabel;
-    QPushButton* resetButton;
+    QPushButton *buttons[3][3];
+    QLabel *statusLabel;
+    QPushButton *resetButton;
 
     void updateStatus();
     void disableButtons();
     void resetGame();
-
 };
 
 #endif // TICTACTOEWINDOW_H

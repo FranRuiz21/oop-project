@@ -1,7 +1,7 @@
 #include "sudokuwindow.h"
 
-
-SudokuWindow::SudokuWindow(QWidget *parent) : QWidget(parent)
+SudokuWindow::SudokuWindow(QWidget *parent)
+    : QWidget(parent)
 {
     setupUI();
 }
@@ -31,10 +31,6 @@ void SudokuWindow::setupUI()
     connect(btnCheck, &QPushButton::clicked, this, &SudokuWindow::checkCompletion);
     connect(btnSolution, &QPushButton::clicked, this, &SudokuWindow::showSolution);
 
-
-
-
-
     QHBoxLayout *difficultyLayout = new QHBoxLayout;
     difficultyLayout->addWidget(btnEasy);
     difficultyLayout->addWidget(btnMedium);
@@ -55,25 +51,29 @@ void SudokuWindow::setupUI()
     setMinimumSize(500, 600);
 }
 
-void SudokuWindow::newGameEasy() {
+void SudokuWindow::newGameEasy()
+{
     game.generatePuzzle(1);
     loadBoard();
     lockFixedCells();
 }
 
-void SudokuWindow::newGameMedium() {
+void SudokuWindow::newGameMedium()
+{
     game.generatePuzzle(2);
     loadBoard();
     lockFixedCells();
 }
 
-void SudokuWindow::newGameHard() {
+void SudokuWindow::newGameHard()
+{
     game.generatePuzzle(3);
     loadBoard();
     lockFixedCells();
 }
 
-void SudokuWindow::loadBoard() {
+void SudokuWindow::loadBoard()
+{
     table->blockSignals(true);
     for (int row = 0; row < 9; ++row) {
         for (int col = 0; col < 9; ++col) {
@@ -98,8 +98,8 @@ void SudokuWindow::loadBoard() {
     table->clearSelection();
 }
 
-
-void SudokuWindow::lockFixedCells() {
+void SudokuWindow::lockFixedCells()
+{
     for (int row = 0; row < 9; ++row) {
         for (int col = 0; col < 9; ++col) {
             QTableWidgetItem *item = table->item(row, col);
@@ -114,13 +114,15 @@ void SudokuWindow::lockFixedCells() {
     }
 }
 
-void SudokuWindow::resetBoard() {
+void SudokuWindow::resetBoard()
+{
     game.resetBoard();
     loadBoard();
     lockFixedCells();
 }
 
-void SudokuWindow::checkCompletion() {
+void SudokuWindow::checkCompletion()
+{
     if (game.isComplete()) {
         QMessageBox::information(this, "Sudoku", "Congratulations! You completed the puzzle!");
     } else {
@@ -128,7 +130,8 @@ void SudokuWindow::checkCompletion() {
     }
 }
 
-void SudokuWindow::showSolution() {
+void SudokuWindow::showSolution()
+{
     table->blockSignals(true);
     for (int row = 0; row < 9; ++row) {
         for (int col = 0; col < 9; ++col) {
@@ -138,7 +141,8 @@ void SudokuWindow::showSolution() {
     table->blockSignals(false);
 }
 
-void SudokuWindow::handleCellChanged(int row, int column) {
+void SudokuWindow::handleCellChanged(int row, int column)
+{
     QTableWidgetItem *item = table->item(row, column);
     QString val = item->text();
     int num = val.toInt();
@@ -156,9 +160,8 @@ void SudokuWindow::handleCellChanged(int row, int column) {
         item->setBackground(Qt::white);
         item->setForeground(Qt::black);
     } else {
-       item->setText("");
+        item->setText("");
         item->setBackground(Qt::white);
         item->setForeground(Qt::black);
     }
 }
-

@@ -1,10 +1,11 @@
 #ifndef CELLBUTTON_H
 #define CELLBUTTON_H
 
-#include <QPushButton>
 #include <QMouseEvent>
+#include <QPushButton>
 
-class CellButton : public QPushButton {
+class CellButton : public QPushButton
+{
     Q_OBJECT
 
 public:
