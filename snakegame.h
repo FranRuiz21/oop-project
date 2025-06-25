@@ -8,7 +8,7 @@
 #include <QTimer>
 #include <QVector>
 #include <QPoint>
-
+#include <QSoundEffect> 
 class SnakeGame : public QWidget {
     Q_OBJECT
 
@@ -32,7 +32,8 @@ private:
     const int GRID_COLS = 40;
     const int GRID_ROWS = 40;
     int speed = 100;
-
+    QSoundEffect *eatSound;
+    QSoundEffect *crashSound; //SOUND ADDED
     QVector<QPoint> snake;
     QPoint food;
     Direction dir = Right;
