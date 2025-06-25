@@ -1,9 +1,5 @@
 #include "snakegame.h"
-#include <QPainter>
-#include <QKeyEvent>
-#include <QSoundEffect>
-#include <QUrl>
-#include <ctime>
+
 
 SnakeGame::SnakeGame(QWidget *parent)
     : QWidget(parent)
