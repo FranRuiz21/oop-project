@@ -49,7 +49,7 @@ install(TARGETS ArcadeGames
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
-# Copiar carpeta 'sounds' al directorio de salida (build/bin)
+
 add_custom_command(TARGET ArcadeGames POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_SOURCE_DIR}/sounds

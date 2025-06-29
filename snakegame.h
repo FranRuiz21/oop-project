@@ -35,7 +35,7 @@ private:
     const int GRID_ROWS = 40;
     int speed = 100;
     QSoundEffect *eatSound;
-    QSoundEffect *crashSound; //SOUND ADDED
+    QSoundEffect *crashSound;
 
     QMediaPlayer *backgroundMusic;
     QAudioOutput *backgroundOutput;

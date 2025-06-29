@@ -18,11 +18,11 @@ void MinesweeperWindow::setupUI()
     mineCounterLabel = new QLabel(this);
     mineCounterLabel->setAlignment(Qt::AlignCenter);
     mineCounterLabel->setStyleSheet(
-        "font-size: 24px; font-weight: bold;"); // un poco más grande para pantallas grandes
+        "font-size: 24px; font-weight: bold;");
     mainLayout->addWidget(mineCounterLabel);
 
     resetButton = new QPushButton("Reset", this);
-    resetButton->setFixedHeight(40); // un poco más alto
+    resetButton->setFixedHeight(40);
     mainLayout->addWidget(resetButton);
     connect(resetButton, &QPushButton::clicked, this, &MinesweeperWindow::resetClicked);
 
@@ -35,11 +35,10 @@ void MinesweeperWindow::setupUI()
         for (int j = 0; j < BOARD_SIZE; ++j) {
             CellButton *btn = new CellButton(i, j, this);
 
-            // ✅ En lugar de tamaño fijo, usa size policy expansivo
             btn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
             btn->setStyleSheet(
-                "font-weight: bold; font-size: 20px;"); // más grande para pantallas grandes
+                "font-weight: bold; font-size: 20px;");
 
             gridLayout->addWidget(btn, i, j);
             buttons[i][j] = btn;

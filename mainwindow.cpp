@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Set button styles
+
     QString buttonStyle = "background-color: #b2bfc2; color: #ffffff; font-family: 'Times New "
                           "Roman'; font-weight: bold;";
     ui->sudokuButton->setStyleSheet(buttonStyle);
@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->snakeButton->setStyleSheet(buttonStyle);
     ui->tictactoeButton->setStyleSheet(buttonStyle);
 
-    // Connect buttons
+
     connect(ui->sudokuButton, &QPushButton::clicked, this, &MainWindow::onSudokuClicked);
     connect(ui->minesweeperButton, &QPushButton::clicked, this, &MainWindow::onMinesweeperClicked);
     connect(ui->snakeButton, &QPushButton::clicked, this, &MainWindow::onSnakeClicked);

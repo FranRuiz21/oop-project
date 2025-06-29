@@ -3,7 +3,7 @@
 #include <QUrl>
 Minesweeper::Minesweeper()
 {
-    // Inicializar sonido de explosión
+
     crashSound = new QSoundEffect();
     crashSound->setSource(QUrl::fromLocalFile("sounds/crash.wav"));
     crashSound->setVolume(0.9);
@@ -72,7 +72,7 @@ bool Minesweeper::reveal(int x, int y)
     if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE || revealed[x][y] || flagged[x][y])
         return false;
 
-    // Primer click: se colocan minas
+
     if (firstClick) {
         placeMines(x, y);
         firstClick = false;
@@ -83,7 +83,7 @@ bool Minesweeper::reveal(int x, int y)
     if (mines[x][y]) {
         if (crashSound && crashSound->isLoaded())
             crashSound->play();
-        return true; // Hit mine
+        return true;
     }
 
     remaining--;

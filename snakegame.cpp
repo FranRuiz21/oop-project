@@ -9,7 +9,7 @@ SnakeGame::SnakeGame(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &SnakeGame::gameLoop);
 
-    // Inicializar sonidos
+
     eatSound = new QSoundEffect(this);
     eatSound->setSource(QUrl::fromLocalFile("sounds/eat.wav"));
     eatSound->setVolume(0.5);
@@ -22,10 +22,9 @@ SnakeGame::SnakeGame(QWidget *parent)
 
     backgroundMusic->setAudioOutput(backgroundOutput);
     backgroundMusic->setSource(QUrl::fromLocalFile("sounds/Door.wav"));
-    backgroundMusic->setLoops(QMediaPlayer::Infinite); // 🔁 Bucle infinito
-    backgroundOutput->setVolume(1.0); // Volumen bajo
-    backgroundMusic->play(); // ▶️ Comienza a reproducir
-
+    backgroundMusic->setLoops(QMediaPlayer::Infinite);
+    backgroundOutput->setVolume(1.0);
+    backgroundMusic->play();
 
 
 
@@ -102,11 +101,11 @@ void SnakeGame::gameLoop()
         break;
     }
 
-    // Verificar colisiones
+
     if (head.x() < 0 || head.x() >= GRID_COLS || head.y() < 0 || head.y() >= GRID_ROWS
         || snake.contains(head)) {
         gameOver = true;
-        crashSound->play(); // 💥 Sonido de choque
+        crashSound->play();
         timer->stop();
         update();
         return;
@@ -116,7 +115,7 @@ void SnakeGame::gameLoop()
 
     if (head == food) {
         score++;
-        eatSound->play(); // 🎯 Sonido de comer
+        eatSound->play();
         spawnFood();
     } else {
         snake.pop_back();
@@ -144,7 +143,7 @@ void SnakeGame::paintEvent(QPaintEvent *)
     painter.setBrush(Qt::black);
     painter.drawRect(rect());
 
-    // Serpiente
+
     painter.setBrush(Qt::green);
     for (const QPoint &p : std::as_const(snake)) {
         painter.drawRect(offsetX + p.x() * cellWidth,
@@ -153,14 +152,14 @@ void SnakeGame::paintEvent(QPaintEvent *)
                          cellHeight);
     }
 
-    // Comida
+
     painter.setBrush(Qt::red);
     painter.drawEllipse(offsetX + food.x() * cellWidth,
                         offsetY + food.y() * cellHeight,
                         cellWidth,
                         cellHeight);
 
-    // Game Over
+
     if (gameOver) {
         painter.setPen(Qt::white);
         painter.drawText(rect(), Qt::AlignCenter, "GAME OVER");

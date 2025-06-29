@@ -1,6 +1,6 @@
 #include "cellbutton.h"
 
-//mienesweeper clicks
+
 CellButton::CellButton(int x, int y, QWidget *parent)
     : QPushButton(parent)
     , posX(x)

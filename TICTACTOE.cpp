@@ -9,7 +9,7 @@ TicTacToe::TicTacToe()
     , currentPlayer('X')
     , moves(0)
 {
-    // Inicializar música de fondo
+
     backgroundMusic = new QMediaPlayer();
     backgroundOutput = new QAudioOutput();
 

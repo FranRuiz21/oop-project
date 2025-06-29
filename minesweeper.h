@@ -30,7 +30,7 @@ private:
 
 public:
     Minesweeper();
-    ~Minesweeper(); // Destructor
+    ~Minesweeper();
 
     void reset();
     bool reveal(int x, int y);
