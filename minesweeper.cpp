@@ -26,6 +26,8 @@ Minesweeper::Minesweeper()
 Minesweeper::~Minesweeper()
 {
     delete crashSound;
+    delete backgroundMusic;
+    delete backgroundOutput;
 }
 
 void Minesweeper::reset()

@@ -139,7 +139,7 @@ void SnakeGame::paintEvent(QPaintEvent *)
 
     painter.setClipRect(offsetX, offsetY, gridWidth, gridHeight);
 
-    // Fondo
+
     painter.setBrush(Qt::black);
     painter.drawRect(rect());
 
